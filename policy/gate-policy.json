@@ -1,0 +1,8 @@
+{
+  "required": ["trivy", "gitleaks", "semgrep", "bandit", "host_audit"],
+  "trivy":      { "max_critical": 0, "max_high": 0, "ignore_unfixed": true, "max_secrets": 0 },
+  "gitleaks":   { "max_findings": 0 },
+  "semgrep":    { "max_error": 0, "max_warning": 10 },
+  "bandit":     { "max_high": 0, "max_medium": 5 },
+  "host_audit": { "fail_on": "high", "min_score": 80 }
+}

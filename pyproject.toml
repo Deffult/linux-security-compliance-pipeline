@@ -1,0 +1,25 @@
+[project]
+name = "linux-security-compliance-pipeline"
+version = "1.0.0"
+description = "Linux hardening auditor + CI/CD security compliance pipeline by Mr. Deffult"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 130
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "S", "UP"]
+# S603/S607: subprocess only with fixed argv lists. S108/S103/S104/S107: this is a security *auditor* - it names
+# /tmp, 0o777-style modes and 0.0.0.0 as detection patterns, it does not use them insecurely.
+ignore = ["S603", "S607", "E501", "S108", "S103", "S104", "S107"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "S105", "S106"]
+
+[tool.bandit]
+skips = ["B404", "B603"]
